@@ -1,20 +1,25 @@
 Simple example:
 ```julia
-filename = "/Users/ferreol/Data/SPHERE/PSF/right_cropped_reduced_SPHER.2021-11-24T03:32:33.190_IRDIS_OBJECT,FLUX_0.837464s_5f_DP_0_BB_Ks_POLARIMETRY,CORONOGRAPHY.fits";
+using BoucheTrous, EasyFITS
 
-hdu = read(FitsHeader, filename)
-img = read(FitsFile, filename; ext=1)
-w = read(FitsFile, filename; ext=2)
-hdr = read(FitsHeader, filename)
+filename = "/Users/ferreol/Data/RawData/SPHERE/BoucheTrou/reduced_SPHER.2019-11-02T00:16:29.340_2639773_IRDIS_OBJECT_7.996176s_16f_DB_K12_IMAGE,DUAL,CORONOGRAPHY.fits"
+
+hdu = read(FitsHeader, filename);
+img = read(FitsFile, filename; ext=1);
+w   = read(FitsFile, filename; ext=2);
+hdr = read(FitsHeader, filename);
 
 
-
-Diameter =8.2 # diametre des UT en m
-RAD2MAS = 1 / π *180 *60*60*1000 
-λ = 2e-6 #(doit être fixée d'apres les keywords)
-pixscal=hdr["PIXSCAL"].value()
-
-pupil_radius = pixscal / RAD2MAS  * Diameter / λ
 badpix = w .==0;
-BoucheTrou!(img,badpix,pupil_radius)
+bouchetrous!(img,badpix)
+
+#IRDIS left panel
+leftbox = BoucheTrous.get_box(badpix[1:1024,:,:])
+bouchetrous!(view(img,leftbox,:),view(badpix,leftbox,:);maxiter=1000)
+
+#IRDIS right panel
+rightbox = BoucheTrous.get_box(badpix[1025:end,:,:]) + (1025,0)
+bouchetrous!(view(img,rightbox,:),view(badpix,rightbox,:);maxiter=1000)
+
+
 ```
