@@ -1,11 +1,18 @@
 name = "BoucheTrous"
 uuid = "0b13a4d2-f5a1-40de-a234-47f0859940f6"
-authors = ["ferreol <ferreol.soulez@free.fr>"]
 version = "0.1.0"
+authors = ["ferreol <ferreol.soulez@univ-lyon.fr>"]
 
 [deps]
 AbstractFFTs = "621f4979-c628-5d54-868e-fcf4e3e8185c"
 CartesianBoxes = "f894539e-422c-4c16-819a-0e1d0163d378"
+LinOps = "12e01e97-5e40-5c5d-ad16-3cd76309c2d9"
 OptimPackNextGen = "080ffe24-4a27-4ab0-ad71-7b624e73ef8d"
-SimpleAlgebra = "c653966b-d9be-4146-a61d-9a13ffa1fe75"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
+
+[sources]
+LinOps = {rev = "master", url = "https://github.com/FerreolS/LinOps.jl.git"}
+OptimPackNextGen = {rev = "master", url = "https://github.com/emmt/OptimPackNextGen.jl.git"}
+
+[compat]
+LinOps = "0.1.0"

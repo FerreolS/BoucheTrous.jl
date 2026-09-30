@@ -13,7 +13,7 @@ hdr = read(FitsHeader, filename);
 badpix = w .==0;
 
 #IRDIS left panel
-leftbox = BoucheTrous.get_box(badpix[1:1024,:,:])
+leftbox = BoucheTrous.get_box(badpix[1:1024,:,:]);
 bouchetrous!(view(img,leftbox,:),view(badpix,leftbox,:);maxiter=1000)
 
 #IRDIS right panel
