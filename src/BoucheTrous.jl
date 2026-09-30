@@ -1,6 +1,10 @@
 module BoucheTrous
 
-using LinOps, AbstractFFTs, OptimPackNextGen, CartesianBoxes, Zygote
+using AbstractFFTs: fftfreq, rfftfreq
+using CartesianBoxes: CartesianBox
+using LinOps: LinOpDFT, LinOpDiag, LinOpSelect
+using OptimPackNextGen: vmlmb
+using Zygote: Zygote
 
 export bouchetrous!
 
