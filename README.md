@@ -1,3 +1,5 @@
+[![Aqua QA](https://juliatesting.github.io/Aqua.jl/dev/assets/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
+
 Simple example:
 ```julia
 using BoucheTrous, EasyFITS
