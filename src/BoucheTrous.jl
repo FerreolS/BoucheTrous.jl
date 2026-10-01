@@ -36,10 +36,12 @@ function bouchetrous!(img::AbstractArray{T, N}, badpix::AbstractArray{Bool, N}; 
     return Threads.@threads for n in axes(img, 3)
         data = img[:, :, n]
         S = LinOpSelect(badpix[:, :, n])
+        p0 = S * data
+        data[badpix[:, :, n]] .= 0
         cost(x) = sum(abs2, F * (S' * x + data))
         prep = prepare_gradient(cost, AutoZygote(), S * data)
         fg! = AutoDiffObjectiveFunction(cost, prep, AutoZygote())
-        p = vmlmb(fg!, S * data; lower = minimum(data), kwds...)
+        p = vmlmb(fg!, p0; lower = minimum(data), kwds...)
         img[badpix[:, :, n]] .= p
     end
 end
