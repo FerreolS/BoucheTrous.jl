@@ -6,7 +6,8 @@ using LinOps: LinOpDFT, LinOpDiag, LinOpGrad, LinOpSelect
 using OptimPackNextGen: vmlmb, AutoDiffObjectiveFunction
 using Zygote: Zygote
 using DifferentiationInterface: AutoZygote, prepare_gradient
-using StatsBase, ImageFiltering
+using StatsBase: mad, median
+using ImageFiltering: mapwindow
 
 
 export bouchetrous!, redetectbadpix!
@@ -39,7 +40,7 @@ function bouchetrous!(img::AbstractArray{T, N}, badpix::AbstractArray{Bool, N}; 
         prep = prepare_gradient(cost, AutoZygote(), S * data)
         fg! = AutoDiffObjectiveFunction(cost, prep, AutoZygote())
         p = vmlmb(fg!, S * data; lower = minimum(data), kwds...)
-        img[:, :, n] .+= S' * p
+        img[badpix[:, :, n]] .= p
     end
 end
 
