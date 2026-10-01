@@ -2,13 +2,13 @@
 
 Simple example:
 ```julia
-using BoucheTrous, EasyFITS
+using BoucheTrous, AstroFITS
 
 filename = "/Users/ferreol/Data/RawData/SPHERE/BoucheTrou/reduced_SPHER.2019-11-02T00:16:29.340_2639773_IRDIS_OBJECT_7.996176s_16f_DB_K12_IMAGE,DUAL,CORONOGRAPHY.fits"
 
 hdu = read(FitsHeader, filename);
-img = read(FitsFile, filename; ext=1);
-w   = read(FitsFile, filename; ext=2);
+img = readfits(filename; ext=1);
+w   = readfits(filename; ext=2);
 hdr = read(FitsHeader, filename);
 
 

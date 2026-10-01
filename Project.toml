@@ -6,6 +6,7 @@ authors = ["ferreol <ferreol.soulez@univ-lyon.fr>"]
 [deps]
 AbstractFFTs = "621f4979-c628-5d54-868e-fcf4e3e8185c"
 CartesianBoxes = "f894539e-422c-4c16-819a-0e1d0163d378"
+DifferentiationInterface = "a0c0ee7d-e4b9-4e03-894e-1c5f64a51d63"
 LinOps = "12e01e97-5e40-5c5d-ad16-3cd76309c2d9"
 OptimPackNextGen = "080ffe24-4a27-4ab0-ad71-7b624e73ef8d"
 Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
@@ -18,8 +19,10 @@ OptimPackNextGen = {rev = "master", url = "https://github.com/emmt/OptimPackNext
 AbstractFFTs = "1"
 Aqua = "0.8"
 CartesianBoxes = "0.3"
+DifferentiationInterface = "0.7.21"
 ExplicitImports = "1"
 LinOps = "0.1.0"
+OffsetArrays = "1"
 OptimPackNextGen = "0.4"
 Test = "1.10"
 Zygote = "0.7"
@@ -28,7 +31,8 @@ julia = "1.10"
 [extras]
 Aqua = "4c88cf16-eb10-579e-8560-4a9242c79595"
 ExplicitImports = "7d51a73a-1435-4ff3-83d9-f097790105c7"
+OffsetArrays = "6fe1bfb0-de20-5000-8ca7-80f57d26f881"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["Aqua", "ExplicitImports", "Test"]
+test = ["Aqua", "ExplicitImports", "OffsetArrays", "Test"]
